@@ -14,6 +14,7 @@ function createHTML() {
 	var ingredientsMissing = [];
 	var nameSpan = [];
 	var ingredientsMissingSpan = [];
+	// var linebreak = document.createElement("br");
 
 	for (var i = 0; i < recipes.length; i++) {
 		//Create a new div in each loop with an id of recipeDiv0, recipeDiv1... so you get a div for each recipe
@@ -24,19 +25,22 @@ function createHTML() {
 		nameSpan[i] = document.createElement("span");
 		nameSpan[i].setAttribute("id", "nameSpan" + i);
 		title[i] = document.createTextNode("Dish name: " + recipes[i].title);
-		nameSpan[i].appendChild(title[i])
+		nameSpan[i].appendChild(title[i]);
 
 		
 		//Create span with id of ingredientsMissingSpan0, ingredientsMissingSpan1... to contain number of missing ingredients; and create and append the actual number of missing ingredients to said span
 		ingredientsMissingSpan[i] = document.createElement("span");
 		ingredientsMissingSpan[i].setAttribute("id", "ingredientsMissingSpan" + i);
-		ingredientsMissing[i] = document.createTextNode("Number of missing ingredients: " + recipes[i].missedIngredientCount)
-		ingredientsMissingSpan[i].appendChild(ingredientsMissing[i])
+		ingredientsMissing[i] = document.createTextNode("Number of missing ingredients: " + recipes[i].missedIngredientCount);
+		ingredientsMissingSpan[i].appendChild(ingredientsMissing[i]);
 
 
-		//Append title and number of missing ingredients spans to main div
+		//Append title and number of missing ingredients spans to main div separated by a linebreak
 		recipeDiv[i].appendChild(nameSpan[i]);
+		var linebreak = document.createElement("br");
+		recipeDiv[i].appendChild(linebreak);
 		recipeDiv[i].appendChild(ingredientsMissingSpan[i]);
+
 		
 		//Append div to the html file so that it's visible
 		document.body.appendChild(recipeDiv[i]);
@@ -46,13 +50,6 @@ function createHTML() {
 }
 
 createHTML();
-
-
-
-
-
-
-
 
 
 
