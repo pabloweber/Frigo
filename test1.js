@@ -2,26 +2,33 @@ console.log('JavaScript connected');
 
 
 var frigo = new XMLHttpRequest();
-frigo.open("GET", "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=chicken&mashape-key=0gbpW6Rs1ymshDLw1GaH2g0W8JOjp1x5kCQjsnPQ3FoiRkIu0D", false);
+frigo.open("GET", "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=chicken&number=200&mashape-key=0gbpW6Rs1ymshDLw1GaH2g0W8JOjp1x5kCQjsnPQ3FoiRkIu0D", false);
 frigo.send();
 
 var recipes = JSON.parse(frigo.response);
 
-var title = "Dish name: " + recipes[0].title;
-var ingredientsUsed = "Ingredients Used: " + recipes[0].usedIngredientCount;
-var ingredientsMissing = "Ingredients Missed: " + recipes[0].missedIngredientCount;
-
 function createHTML() {
-	var div = [];
+	
+	var recipeDiv = [];
 	var title = [];
+	var ingredientsMissing = [];
 
 	for (var i = 0; i < recipes.length; i++) {
-		div[i] = document.createElement("div");
-		div[i].setAttribute("id", "div" + i);
+		//Create a new div in each loop with and id of recipeDiv0, recipeDiv1... so you get a div for each recipe
+		recipeDiv[i] = document.createElement("div");
+		recipeDiv[i].setAttribute("id", "recipeDiv" + i);
+		
+		//Get dish name and number of missing ingredients from API
 		title[i] = document.createTextNode("Dish name: " + recipes[i].title);
+		ingredientsMissing[i] = document.createTextNode("Number of missing ingredients: " + recipes[i].missedIngredientCount)
 
-		div[i].appendChild(title[i]);
-		document.body.appendChild(div[i]);
+		//Append title and number of missing ingredients to their respective divs
+		recipeDiv[i].appendChild(title[i]);
+		recipeDiv[i].appendChild(ingredientsMissing[i]);
+		
+		//Append div to the html file so that it's visible
+		document.body.appendChild(recipeDiv[i]);
+
 	}
 
 }
