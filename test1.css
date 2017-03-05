@@ -1,0 +1,16 @@
+div{
+	margin: 20px;
+	float: left;
+	background-color: blue;
+	height: 300px;
+	width: 300px;
+}
+
+img{
+	height: 200px;
+	width: 300px;
+}
+
+span{
+	display: block;
+}
