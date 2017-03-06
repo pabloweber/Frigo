@@ -8,14 +8,30 @@
 
 	<body>
 		
-		<p id="inputFields">
-			Ingredients: <input id="ingredientsInput"></input>
-			<br>
-			Number of recipes you'd like to see: <input id="numRecInput"></input>
-			<br>
-			<button onclick="getRecipes()">submit</button>
-		</p>
+		<div id="nav">
 
+			<div id="navContainer">
+				
+				<p id="logo">FRIGO</p>
+
+			</div>
+
+		</div>
+
+		<div id="formContainer">
+			<p id="inputFields">
+				<span id='formTitle'>Hungry?</span>
+				<br>
+				<br>
+				<input id="ingredientsInput" placeholder="What's in your fridge?" value="watermelon"></input>
+				<br>
+				<input id="maxNumMissing" placeholder='Default is 100'></input>
+				<br>
+				<button id="search" onclick="getRecipes()">Search</button>
+			</p>
+		</div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<script src='test1.js'></script>
 	</body>
 </html>
