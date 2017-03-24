@@ -105,26 +105,25 @@ div[id^="recipeDiv"]{
 	margin: 20px;
 	float: left;
 	background-color: blue;
-	height: 300px;
+	height: 600px;
 	width: 300px;
 
 }
 
 img{
-	height: 200px;
+	max-height: 420px;
 	width: 300px;
 }
 
 [id^="nameSpan"] {
 	background-color: green;
 	display: block;
-	height: 36px;
 	font-weight: bold;
 	font-size: 20px;
 	border-radius: inherit;
+	padding: 10px;
 }
 
 [id^="recipeDiv"] {
 	border-radius: 5px;
 }
-
