@@ -25,11 +25,14 @@ function getRecipes(){
 		var descriptionText = [];
 
 		recipeContainer = document.createElement("div");
-		recipeContainer.setAttribute("id", "recipeContainer");
+		recipeContainer.setAttribute("class", "recipeContainer");
 
-		if (document.getElementById("recipeContainer") !== null) {
+		
 
-			$("#recipeContainer").remove();
+
+		if (document.getElementsByClassName("recipeContainer") !== null) {
+
+			$(".recipeContainer").remove();
 
 		}
 
@@ -45,6 +48,7 @@ function getRecipes(){
 			//Create a new div in each loop with an id of recipeDiv0, recipeDiv1... so you get a div for each recipe
 			recipeDiv[i] = document.createElement("div");
 			recipeDiv[i].setAttribute("id", "recipeDiv" + i);
+			recipeDiv[i].setAttribute("class", "recipeBlock");
 
 				
 			//Create span with id of nameSpan0, nameSpan1... to contain name of dish; and create and append the actual name of dish to said span
@@ -74,27 +78,29 @@ function getRecipes(){
 			// descriptionSpan[i].appendChild(descriptionText[i]);
 
 
-			if (maxNumMissing <= recipes[i].missedIngredientCount) {
-				//Append title and number of missing ingredients spans to main div separated by a linebreak
-				recipeDiv[i].appendChild(nameSpan[i]);
-				recipeDiv[i].appendChild(img[i]);
-				recipeDiv[i].appendChild(ingredientsMissingSpan[i]);
-				// recipeDiv[i].appendChild(descriptionSpan[i]);
+			//Append title and number of missing ingredients spans to main div separated by a linebreak
+			recipeDiv[i].appendChild(nameSpan[i]);
+			recipeDiv[i].appendChild(img[i]);
+			recipeDiv[i].appendChild(ingredientsMissingSpan[i]);
+			// recipeDiv[i].appendChild(descriptionSpan[i]);
 
-				recipeContainer.appendChild(recipeDiv[i]);
-			} else {
-
-			}
+			recipeContainer.appendChild(recipeDiv[i]);
 		}
 
 		document.body.appendChild(recipeContainer);
+
+		$('.recipeContainer').imagesLoaded(function() {
+		    $('.recipeContainer').masonry({
+			  	itemSelector: 'div.recipeBlock',
+			  	columnWidth: 'div.recipeBlock'
+			});
+		});
 
 		console.log(recipes.length)
 
 	}
 
 	createHTML();
-
 }
 
 console.log("JavaScript finished loading");

@@ -94,20 +94,17 @@ input::-webkit-input-placeholder {
 	background-color: rgba(0, 153, 255, 0.6)
 }
 
-#recipeContainer{
+.recipeContainer{
 	padding-top: calc(100vh - 121px);
 	margin: 0 auto;
-	max-width: 1400px;
-
+	max-width: 1360px;
 }
 
-div[id^="recipeDiv"]{
+.recipeBlock{
 	margin: 20px;
-	float: left;
 	background-color: blue;
-	height: 600px;
 	width: 300px;
-
+	border-radius: 5px;
 }
 
 img{
@@ -124,6 +121,6 @@ img{
 	padding: 10px;
 }
 
-[id^="recipeDiv"] {
-	border-radius: 5px;
+[id^="ingredientsMissingSpan"] {
+	padding: 10px;
 }
