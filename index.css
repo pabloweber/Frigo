@@ -35,6 +35,7 @@ body{
   	position: absolute;
   	top: 0; left: 0; bottom: 0; right: 0;
   	padding: 0 30px;
+  	z-index: 1;
 }
 
 #formTitle{
@@ -94,33 +95,45 @@ input::-webkit-input-placeholder {
 	background-color: rgba(0, 153, 255, 0.6)
 }
 
-.recipeContainer{
+.recipeWrapper{
 	padding-top: calc(100vh - 121px);
 	margin: 0 auto;
 	max-width: 1360px;
+	z-index: 0;
+}
+
+.recipeContainer{
+	height: inherit;
+	padding-top: 20px;
 }
 
 .recipeBlock{
-	margin: 20px;
-	background-color: blue;
+	margin: 15px;
+	background-color: #0099FF;
 	width: 300px;
 	border-radius: 5px;
+	color: white;
 }
 
-img{
+.img{
 	max-height: 420px;
-	width: 300px;
+	width: inherit;
 }
 
-[id^="nameSpan"] {
-	background-color: green;
+.name{
+	background-color: #0099FF;
 	display: block;
+	color: white;
 	font-weight: bold;
 	font-size: 20px;
 	border-radius: inherit;
 	padding: 10px;
 }
 
-[id^="ingredientsMissingSpan"] {
+.ingredientsMissing{
+	padding: 10px;
+}
+
+.description{
 	padding: 10px;
 }
