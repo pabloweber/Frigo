@@ -2,8 +2,14 @@
 
 <html>
 	<head>
-		<title>Home</title>
+		<title>Frigo</title>
 		<link rel="stylesheet" href="index.css">
+
+		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+		<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+		<link rel="manifest" href="manifest.json">
+		<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="theme-color" content="#ffffff">
 	</head>
 
 	<body>
@@ -20,14 +26,12 @@
 
 		<div id="formContainer">
 			<p id="inputFields">
-				<span id='formTitle'>What's in your fridge?</span>
+				<span id='formTitle'>Hungry?</span>
 				<br>
 				<br>
-				<input id="ingredientsInput" placeholder="What's in your fridge?" value="watermelon"></input>
+				<input id="ingredientsInput" value="cheese" placeholder="What's in your fridge?"></input>
 				<br>
-				<input id="maxNumMissing" placeholder='Default is 100'></input>
-				<br>
-				<button id="search" onclick="getRecipes()">Search</button>
+				<button type="submit" id="search" onclick="getRecipes()">Search</button>
 			</p>
 		</div>
 		

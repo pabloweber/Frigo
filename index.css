@@ -30,7 +30,7 @@ body{
 
 #formContainer{
 	width: 700px;
-	height: 366px;
+	height: 280px;
 	margin: auto;
   	position: absolute;
   	top: 0; left: 0; bottom: 0; right: 0;
@@ -136,4 +136,14 @@ input::-webkit-input-placeholder {
 
 .description{
 	padding: 10px;
+}
+
+.clickPart{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
 }
