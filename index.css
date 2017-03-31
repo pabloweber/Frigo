@@ -26,6 +26,12 @@ body{
 	font-weight: 700;
 	color: #0099FF;
 	margin: 0;
+	display: inline;
+}
+
+#logoImg{
+	height: 50px;
+	display: inline;
 }
 
 #formContainer{
@@ -109,10 +115,17 @@ input::-webkit-input-placeholder {
 
 .recipeBlock{
 	margin: 15px;
-	background-color: #0099FF;
+	border-color: : #0099FF;
+	border-width: 5px;
 	width: 300px;
 	border-radius: 5px;
-	color: white;
+	color: #0099FF;
+	border-style: solid;
+	transition: border-color 0.2s ease;
+}
+
+.recipeBlock:hover{
+	border-color: rgba(0, 153, 255, 0.4);
 }
 
 .img{
@@ -121,12 +134,11 @@ input::-webkit-input-placeholder {
 }
 
 .name{
-	background-color: #0099FF;
 	display: block;
 	color: white;
+	background-color: #0099FF;
 	font-weight: bold;
 	font-size: 20px;
-	border-radius: inherit;
 	padding: 10px;
 }
 
@@ -134,8 +146,9 @@ input::-webkit-input-placeholder {
 	padding: 10px;
 }
 
-.description{
-	padding: 10px;
+.likes{
+	padding: 0px 10px;
+	color: red;
 }
 
 .clickPart{

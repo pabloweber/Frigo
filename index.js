@@ -11,7 +11,6 @@ function getRecipes(){
 
 	var recipes = JSON.parse(searchByIngredients.response);
 
-
 	var recipeDiv = [];
 	var ingredientsMissing = [];
 	var name = [];
@@ -19,6 +18,7 @@ function getRecipes(){
 	var description = [];
 	var descriptionText = [];
 	var clickPart = [];
+	var likes = [];
 
 	recipeWrapper = document.createElement("div");
 	recipeWrapper.setAttribute("class", "recipeWrapper");
@@ -34,13 +34,6 @@ function getRecipes(){
 	}
 
 	for (var i = 0; i < recipes.length; i++) {
-
-		// var getDescription = new XMLHttpRequest();
-		// var recId = recipes[i].id;
-		// getDescription.open("GET", "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recId + "/summary?mashape-key=0gbpW6Rs1ymshDLw1GaH2g0W8JOjp1x5kCQjsnPQ3FoiRkIu0D", false);
-		// getDescription.send();
-
-		// var descriptions = JSON.parse(getDescription.response);
 
 		//Create a new div in each loop with an id of recipeDiv0, recipeDiv1... so you get a div for each recipe
 		recipeDiv[i] = document.createElement("div");
@@ -63,20 +56,29 @@ function getRecipes(){
 		//Create span with id of ingredientsMissingSpan0, ingredientsMissingSpan1... to contain number of missing ingredients; and create and append textNode containing the actual number of missing ingredients to said span
 		ingredientsMissing[i] = document.createElement("div");
 		ingredientsMissing[i].setAttribute("class", "ingredientsMissing");
-		ingredientsMissing[i].innerHTML = "<b>" + recipes[i].missedIngredients.length + " " + "missing ingredients:</b></br>";
-		var x = [];
-		for (var j = 0; j < recipes[i].missedIngredients.length; j++) {
-			x[j] = recipes[i].missedIngredients[j].name;
-			ingredientsMissing[i].append(x[j]);
-			if (j !== recipes[i].missedIngredients.length - 1) {
-				ingredientsMissing[i].append(", ");
+		if (recipes[i].missedIngredients.length == 0) {
+			ingredientsMissing[i].innerHTML = "<b>You have all the ingredients!</b>";
+		} else {
+			ingredientsMissing[i].innerHTML = "<b>" + recipes[i].missedIngredients.length + " " + "ingredients missing:</b></br>";
+			var x = [];
+			for (var j = 0; j < recipes[i].missedIngredients.length; j++) {
+				x[j] = recipes[i].missedIngredients[j].name;
+				ingredientsMissing[i].append(x[j]);
+				if (j !== recipes[i].missedIngredients.length - 1) {
+					ingredientsMissing[i].append(", ");
+				}
 			}
 		}
 
+
+		likes[i] = document.createElement("div");
+		likes[i].setAttribute("class", "likes");
+		likes[i].innerHTML = "<b>Likes</b> " + recipes[i].likes;
+
 		//Create an a tag to make the block clickable
-		clickPart[i] = document.createElement("a");
-		clickPart[i].setAttribute("class", "clickPart");
-		clickPart[i].setAttribute("href", "http://www.google.com")
+		// clickPart[i] = document.createElement("a");
+		// clickPart[i].setAttribute("class", "clickPart");
+		// clickPart[i].setAttribute("href", "recipePage.html")
 
 
 		//Create span with id of description0, description1... to contain description; and create and append textNode containing the actual description to said span
@@ -86,11 +88,12 @@ function getRecipes(){
 
 
 		//Append title and number of missing ingredients spans to main div separated by a linebreak
-		recipeDiv[i].appendChild(clickPart[i]);
+		// recipeDiv[i].appendChild(clickPart[i]);
 		recipeDiv[i].appendChild(name[i]);
 		recipeDiv[i].appendChild(img[i]);
+		recipeDiv[i].appendChild(likes[i]);
 		recipeDiv[i].appendChild(ingredientsMissing[i]);
-		// recipeDiv[i].appendChild(description[i]);
+
 
 		recipeContainer.appendChild(recipeDiv[i]);
 	}
@@ -99,8 +102,8 @@ function getRecipes(){
 	recipeWrapper.appendChild(recipeContainer);
 	document.body.appendChild(recipeWrapper);
 
-	$('.recipeWrapper').imagesLoaded(function() {
-	    $('.recipeWrapper').masonry({
+	// $('.recipeWrapper').imagesLoaded(function() {
+	    $('.recipeWrapper').isotope({
 		  	itemSelector: 'div.recipeBlock',
 		  	columnWidth: 'div.recipeBlock'
 		});
@@ -108,10 +111,19 @@ function getRecipes(){
 		$('html,body').animate({
        		scrollTop: $(".recipeContainer").offset().top
     	},'slow');
-	});
+	// });
 
 	console.log(recipes.length)
 
+
+	function getRecipeID() {
+		$('.recipeBlock').on('click', function () {
+			return this.id
+		});
+	}
+
 }
+
+
 
 console.log("JavaScript finished loading");
