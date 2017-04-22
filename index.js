@@ -81,13 +81,14 @@ function main(){
 		likes[i].innerHTML = "<b>Likes</b> " + recipes[i].likes;
 
 		//Create anchor tags to make the recipe blocks clickable
-		// clickPart[i] = document.createElement("a");
-		// clickPart[i].setAttribute("class", "clickPart");
-		// clickPart[i].setAttribute("href", "recipePage.html")
+		clickPart[i] = document.createElement("a");
+		clickPart[i].setAttribute("class", "clickPart");
+		var url = "recipePage.html?id=" + recipes[i].id + "&name=" + recipes[i].title;
+		clickPart[i].setAttribute("href", url);
 
 
 		//Append all parts of recipe blocks to recipe blocks
-		// recipeDiv[i].appendChild(clickPart[i]);
+		recipeDiv[i].appendChild(clickPart[i]);
 		recipeDiv[i].appendChild(name[i]);
 		recipeDiv[i].appendChild(img[i]);
 		recipeDiv[i].appendChild(likes[i]);
@@ -116,11 +117,15 @@ function main(){
 	// });
 
 
-	$(".recipeBlock").click(function() {
+	var recipeId = $(".recipeBlock").click(function() {
 		return $(this).attr('id');
-	})
+	});
 
 	console.log(recipes.length)
 
+}
 
+function test() {
+	var cheese = 5;
+	return cheese;
 }
