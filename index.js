@@ -41,7 +41,7 @@ function main(){
 
 		//Create divs so you get a div for each recipe
 		recipeDiv[i] = document.createElement("div");
-		recipeDiv[i].setAttribute("id", recipes[i].id);
+		recipeDiv[i].setAttribute("id", i);
 		recipeDiv[i].setAttribute("class", "recipeBlock");
 
 			
@@ -49,6 +49,7 @@ function main(){
 		name[i] = document.createElement("span");
 		name[i].setAttribute("class", "name");
 		name[i].innerHTML = recipes[i].title;
+		sessionStorage.setItem('title', recipes[i].title);
 
 
 		//Create img tags to contain image;
@@ -83,8 +84,9 @@ function main(){
 		//Create anchor tags to make the recipe blocks clickable
 		clickPart[i] = document.createElement("a");
 		clickPart[i].setAttribute("class", "clickPart");
-		var url = "recipePage.html?id=" + recipes[i].id + "&name=" + recipes[i].title;
+		var url = "recipePage.html?id=" + recipes[i].id;
 		clickPart[i].setAttribute("href", url);
+		sessionStorage.setItem('imageURL', recipes[i].image);
 
 
 		//Append all parts of recipe blocks to recipe blocks
@@ -107,7 +109,15 @@ function main(){
 	// $('.recipeWrapper').imagesLoaded(function() {
 	    $('.recipeWrapper').isotope({
 		  	itemSelector: 'div.recipeBlock',
-		  	columnWidth: 'div.recipeBlock'
+		  	columnWidth: 'div.recipeBlock',
+		  	//Sorting not workin yet
+		  	getSortData: {
+		  		number: function() {
+		  			var number = $('.ingredientsMissing').text().split(" ")[0];
+		  			return number;
+		  		},
+		  	sortBy: 'number'
+		  	}
 		});
 
 	    //Scroll down on when recipes ready
@@ -116,16 +126,4 @@ function main(){
     	},'slow');
 	// });
 
-
-	var recipeId = $(".recipeBlock").click(function() {
-		return $(this).attr('id');
-	});
-
-	console.log(recipes.length)
-
-}
-
-function test() {
-	var cheese = 5;
-	return cheese;
 }

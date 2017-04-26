@@ -15,7 +15,7 @@ body{
 }
 
 #navContainer{
-	max-width: 1400px;
+	max-width: 1200px;
 	height: 120px;
 	margin: 0 auto;
 	padding: 0 30px;
@@ -26,4 +26,52 @@ body{
 	font-weight: 700;
 	color: #0099FF;
 	margin: 0;
+	display: block;
+	text-decoration: none;
+}
+
+#logoImg{
+	height: 50px;
+	position: absolute;
+	top: 33px;
+	margin-left: 170px;
+	cursor: pointer;
+}
+
+#container{
+	width: 1200px;
+	margin: 0 auto;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #f2f2f2;
+}
+
+#main{
+}
+
+#img{
+	float: left;
+	width: 520px;
+	margin-top: 50px;
+}
+
+#title{
+	width: 500px;
+	float: left;
+	margin-left: 90px;
+	margin-right: 90px;
+	font-size: 40px;
+}
+
+#summary{
+	width: 500px;
+	float: left;
+	margin: 20px 90px 0px 90px;
+}
+
+.clear{
+    clear:both;
+    line-height:0;
 }

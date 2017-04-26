@@ -15,7 +15,7 @@ body{
 }
 
 #navContainer{
-	max-width: 1400px;
+	max-width: 1200px;
 	height: 120px;
 	margin: 0 auto;
 	padding: 0 30px;
@@ -26,15 +26,15 @@ body{
 	font-weight: 700;
 	color: #0099FF;
 	margin: 0;
-	display: inline;
-	cursor: pointer;
+	display: block;
+	text-decoration: none;
 }
 
 #logoImg{
 	height: 50px;
 	position: absolute;
 	top: 33px;
-	margin-left: 15px;
+	margin-left: 170px;
 	cursor: pointer;
 }
 
