@@ -43,12 +43,18 @@ body{
 	margin: 0 auto;
 	margin-top: 40px;
 	margin-bottom: 40px;
+}
+
+#main{
+	padding-bottom: 40px;
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
 	border-bottom-color: #f2f2f2;
 }
 
-#main{
+.instructionSpan{
+	display: block;
+	font-size: 20px;
 }
 
 #img{
@@ -58,17 +64,29 @@ body{
 }
 
 #title{
-	width: 500px;
-	float: left;
-	margin-left: 90px;
-	margin-right: 90px;
 	font-size: 40px;
+	padding-bottom: 20px;
+	display: block;
 }
 
 #summary{
 	width: 500px;
 	float: left;
 	margin: 20px 90px 0px 90px;
+}
+
+.instructions{
+	padding-top: 40px;
+}
+
+#instructionsTitle{
+	font-size: 40px;
+	font-weight: 700;
+	display: block;
+}
+
+#stepNumber{
+	font-size: 30px;
 }
 
 .clear{

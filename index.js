@@ -49,13 +49,14 @@ function main(){
 		name[i] = document.createElement("span");
 		name[i].setAttribute("class", "name");
 		name[i].innerHTML = recipes[i].title;
-		sessionStorage.setItem('title', recipes[i].title);
+		sessionStorage.setItem('title' + i, recipes[i].title);
 
 
 		//Create img tags to contain image;
 		img[i] = document.createElement("img");
 		img[i].setAttribute("class", "img");
 		img[i].setAttribute("src", recipes[i].image);
+		sessionStorage.setItem('imageURL' + i, recipes[i].image);
 
 		
 		//Create spans with id to contain number and names of missing ingredients
@@ -86,7 +87,6 @@ function main(){
 		clickPart[i].setAttribute("class", "clickPart");
 		var url = "recipePage.html?id=" + recipes[i].id;
 		clickPart[i].setAttribute("href", url);
-		sessionStorage.setItem('imageURL', recipes[i].image);
 
 
 		//Append all parts of recipe blocks to recipe blocks
@@ -125,5 +125,10 @@ function main(){
        		scrollTop: $(".recipeContainer").offset().top
     	},'slow');
 	// });
+
+	$('.recipeBlock').on('click', function() {
+		var idOfClicked = $(this).attr('id');
+		sessionStorage.setItem('idOfClicked', idOfClicked);
+	})
 
 }

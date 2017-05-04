@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 	//API Request
 	var steps = new XMLHttpRequest();
-	steps.open("GET", "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + getId() + "/analyzedInstructions?mashape-key=0gbpW6Rs1ymshDLw1GaH2g0W8JOjp1x5kCQjsnPQ3FoiRkIu0D", false);
+	steps.open("GET", "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + getId() + "/analyzedInstructions?stepBreakdown=true&mashape-key=0gbpW6Rs1ymshDLw1GaH2g0W8JOjp1x5kCQjsnPQ3FoiRkIu0D", false);
 	steps.send();
 
 	var summaryApi = new XMLHttpRequest();
@@ -32,23 +32,18 @@ $(document).ready(function() {
 	container.appendChild(main);
 
 	//Add image to DOM
-	var imgUrl = sessionStorage.getItem('imageURL');
+	var imgUrl = sessionStorage.getItem('imageURL' + sessionStorage.getItem('idOfClicked'));
 	var img = document.createElement('img');
 	img.setAttribute('id', 'img');
 	img.setAttribute('src', imgUrl);
 	main.appendChild(img);
 
-	//Add title to DOM
-	var titleText = sessionStorage.getItem('title');
-	var title = document.createElement('div');
-	title.setAttribute('id', 'title');
-	title.innerHTML = "<b>" + titleText + "</b>";
-	main.appendChild(title);
-
-	//Add summary to DOM
+	//Add title + summary to DOM
 	var summaryDiv = document.createElement('div');
 	summaryDiv.setAttribute('id', 'summary');
-	summaryDiv.innerHTML = summary;
+	var titleId = 'title' + sessionStorage.getItem('idOfClicked');
+	var title = sessionStorage.getItem(titleId);
+	summaryDiv.innerHTML =  "<span id='title'><b>" + title + "</b></span>" + summary;
 	main.appendChild(summaryDiv);
 
 	//Add ingredients to DOM
@@ -60,10 +55,43 @@ $(document).ready(function() {
 	clear.setAttribute('class', 'clear');
 	main.appendChild(clear);
 
-	for (var i = 0; i < stepsParsed.length; i++) {
-		stepsParsed[0].steps[i].ingredients
+	// for (var i = 0; i < stepsParsed.length; i++) {
+	// 	stepsParsed[0].steps[i].ingredients
+	// }
+
+	var instructions = document.createElement('div');
+	var instructionsTitle = document.createElement('span');
+	instructionsTitle.setAttribute('id', 'instructionsTitle');
+	instructionsTitle.innerHTML = "Instructions";
+	instructions.appendChild(instructionsTitle);
+	instructions.setAttribute('class', 'instructions');
+	container.appendChild(instructions);
+
+	var instructionSpan = [];
+	var j = 1;
+
+	for (var k = 0; k < stepsParsed[0].steps.length; k++) {
+
+		for (var a = 0; a < stepsParsed[0].steps[k].ingredients.length; a++) {
+			console.log(stepsParsed[0].steps[k].ingredients[a])
+		}
+
 	}
 
+	for (var i = 0; i < stepsParsed[0].steps.length; i++) {
 
-	//recipeParsed[0].steps[0].step
+		var isNumber =  /^\d+$/.test(stepsParsed[0].steps[i].step);
+
+		if (isNumber == true) {
+			continue;
+		}
+
+		instructionSpan[i] = document.createElement('span');
+		instructionSpan[i].setAttribute('class', 'instructionSpan');
+		instructionSpan[i].innerHTML = "<b><span id='stepNumber'>" + (j) + ".</span>" + "</b> " + stepsParsed[0].steps[i].step;
+
+		instructions.appendChild(instructionSpan[i]);
+
+		j += 1
+	}
 })
