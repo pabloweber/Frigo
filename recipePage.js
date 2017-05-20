@@ -10,11 +10,11 @@ $(document).ready(function() {
 
 	//API Request
 	var steps = new XMLHttpRequest();
-	steps.open("GET", "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + getId() + "/analyzedInstructions?stepBreakdown=true&mashape-key=0gbpW6Rs1ymshDLw1GaH2g0W8JOjp1x5kCQjsnPQ3FoiRkIu0D", false);
+	steps.open("GET", "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + getId() + "/analyzedInstructions?stepBreakdown=true&mashape-key=btSAgzlS6CmshxyNyEh24vDF8sl2p1w43h9jsnCABHsQZSfxx6", false);
 	steps.send();
 
 	var summaryApi = new XMLHttpRequest();
-	summaryApi.open("GET", "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + getId() + "/summary?mashape-key=0gbpW6Rs1ymshDLw1GaH2g0W8JOjp1x5kCQjsnPQ3FoiRkIu0D", false);
+	summaryApi.open("GET", "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + getId() + "/summary?mashape-key=btSAgzlS6CmshxyNyEh24vDF8sl2p1w43h9jsnCABHsQZSfxx6", false);
 	summaryApi.send();
 
 	//Parse what API returns
@@ -55,9 +55,9 @@ $(document).ready(function() {
 	clear.setAttribute('class', 'clear');
 	main.appendChild(clear);
 
-	// for (var i = 0; i < stepsParsed.length; i++) {
-	// 	stepsParsed[0].steps[i].ingredients
-	// }
+	var description = document.createElement('div');
+	description.setAttribute('class', 'description');
+	container.appendChild(description)
 
 	var instructions = document.createElement('div');
 	var instructionsTitle = document.createElement('span');
@@ -67,8 +67,10 @@ $(document).ready(function() {
 	instructions.setAttribute('class', 'instructions');
 	container.appendChild(instructions);
 
-	var instructionSpan = [];
+	var instructionUl = document.createElement('ol');
+	instructions.appendChild(instructionUl);
 	var j = 1;
+	var instructionLi = [];
 
 	for (var k = 0; k < stepsParsed[0].steps.length; k++) {
 
@@ -82,16 +84,21 @@ $(document).ready(function() {
 
 		var isNumber =  /^\d+$/.test(stepsParsed[0].steps[i].step);
 
-		if (isNumber == true) {
+		if (isNumber) {
 			continue;
 		}
 
-		instructionSpan[i] = document.createElement('span');
-		instructionSpan[i].setAttribute('class', 'instructionSpan');
-		instructionSpan[i].innerHTML = "<b><span id='stepNumber'>" + (j) + ".</span>" + "</b> " + stepsParsed[0].steps[i].step;
+		instructionLi[i] = document.createElement('li');
+		instructionLi[i].setAttribute('class', 'instructionLi');
+		instructionLi[i].innerHTML = stepsParsed[0].steps[i].step;
 
-		instructions.appendChild(instructionSpan[i]);
+		instructionUl.appendChild(instructionLi[i]);
 
 		j += 1
 	}
+
+	instructions.appendChild(instructionUl)
+
+	description.appendChild(instructions);
+
 })

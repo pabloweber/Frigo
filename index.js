@@ -1,9 +1,16 @@
+$(document).ready(function(){
+	$('#formTitle').addClass('shake-rotate');
+	setTimeout(function(){
+		$('#formTitle').removeClass('shake-rotate')
+	}, 800)
+})
+
 function main(){
 
 	//Create API parameters based on ingredients inputed
 	var inputVal = document.getElementById('ingredientsInput').value;
 	var upToIngredients = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?ingredients=';
-	var afterIngredients = '&number=200&limitLicense=false&fillIngredients=true&ranking=1&limitLicense=false&mashape-key=0gbpW6Rs1ymshDLw1GaH2g0W8JOjp1x5kCQjsnPQ3FoiRkIu0D'
+	var afterIngredients = '&number=200&limitLicense=false&fillIngredients=true&ranking=1&limitLicense=false&mashape-key=btSAgzlS6CmshxyNyEh24vDF8sl2p1w43h9jsnCABHsQZSfxx6'
 
 	//Get recipes for specific ingredients from API 
 	var searchByIngredients = new XMLHttpRequest();

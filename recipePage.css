@@ -3,6 +3,7 @@ body{
 	font-family: "Avenir Next";
 	margin: 0;
 	padding: 0;
+	counter-reset: item;
 }
 
 #nav{
@@ -75,8 +76,9 @@ body{
 	margin: 20px 90px 0px 90px;
 }
 
-.instructions{
+.description{
 	padding-top: 40px;
+	width: 50%;
 }
 
 #instructionsTitle{
@@ -92,4 +94,34 @@ body{
 .clear{
     clear:both;
     line-height:0;
+}
+
+a{
+	text-decoration: none;
+}
+
+ol{
+   list-style: none;
+}
+
+ ol li{
+ 	counter-increment: item;
+   	margin-bottom: 10px;
+   	list-style-position: inside;
+	text-indent: 0.5em;
+    margin-left: -0.5em;
+}
+
+li::before{
+   margin-right: 10px;
+   content: counter(item);
+   background: #0099FF;
+   border-radius: 100%;
+   font-size: 20px;
+   color: white;
+   width: 1.4em;
+   height: 1.4em;
+   text-align: center;
+   display: inline-block;
+   list-style-type: disc;
 }
