@@ -167,3 +167,35 @@ input::-webkit-input-placeholder {
 	height: 100%;
 	width: 100%;
 }
+
+@media only screen and (max-width: 800px) {
+    #formContainer {
+        width: 100%;
+        background-color: pink;
+        padding: 0;
+    }
+
+    #ingredientsInput{
+    	width: 96%;
+		height: 70px;
+		margin-left: 2%;
+		margin-left: 2%;
+		left: 5;
+		right: 5;
+    	box-sizing: border-box;
+    }
+
+    .recipeWrapper{
+    	width: 100%;
+    }
+
+    .recipeBlock{
+    	box-sizing: border-box;
+    	width: 46%;
+    	/*margin: 1%;*/
+    }
+
+    .img{
+    	width: 100%;
+    }
+}

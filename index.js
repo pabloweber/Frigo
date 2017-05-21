@@ -21,14 +21,14 @@ function main(){
 	var recipes = JSON.parse(searchByIngredients.response);
 
 	//Create arrays for HTML creation
-	var recipeDiv = [];
-	var ingredientsMissing = [];
-	var name = [];
-	var img = [];
-	var description = [];
-	var descriptionText = [];
-	var clickPart = [];
-	var likes = [];
+	var recipeDiv;
+	var ingredientsMissing;
+	var name;
+	var img;
+	var description;
+	var descriptionText;
+	var clickPart;
+	var likes;
 	var search;
 
 	recipeWrapper = document.createElement("div");
@@ -47,91 +47,79 @@ function main(){
 	for (var i = 0; i < recipes.length; i++) {
 
 		//Create divs so you get a div for each recipe
-		recipeDiv[i] = document.createElement("div");
-		recipeDiv[i].setAttribute("id", i);
-		recipeDiv[i].setAttribute("class", "recipeBlock");
-
+		recipeDiv = $("<div>")
+			.addClass("recipeBlock")
+			.attr("id", i);
 			
 		//Create spans to contain name of dish; and create and append the actual name of dish to said span
-		name[i] = document.createElement("span");
-		name[i].setAttribute("class", "name");
-		name[i].innerHTML = recipes[i].title;
+		name = $("<span/>")
+			.addClass("name")
+			.html(recipes[i].title);
 		sessionStorage.setItem('title' + i, recipes[i].title);
 
 
 		//Create img tags to contain image;
-		img[i] = document.createElement("img");
-		img[i].setAttribute("class", "img");
-		img[i].setAttribute("src", recipes[i].image);
+		img = $("<img/>")
+			.addClass("img")
+			.attr("src", recipes[i].image);
 		sessionStorage.setItem('imageURL' + i, recipes[i].image);
 
 		
 		//Create spans with id to contain number and names of missing ingredients
-		ingredientsMissing[i] = document.createElement("div");
-		ingredientsMissing[i].setAttribute("class", "ingredientsMissing");
+		ingredientsMissing = $("<div/>").addClass("ingredientsMissing");
 		//Add names of missing ingredients only if there are any
 		if (recipes[i].missedIngredients.length == 0) {
-			ingredientsMissing[i].innerHTML = "<b>You have all the ingredients!</b>";
+			ingredientsMissing.html("<b>You have all the ingredients!</b>");
 		} else {
-			ingredientsMissing[i].innerHTML = "<b>" + recipes[i].missedIngredients.length + " " + "ingredients missing:</b></br>";
+			ingredientsMissing.html("<b>" + recipes[i].missedIngredients.length + " " + "ingredients missing:</b></br>");
 			var x = [];
 			for (var j = 0; j < recipes[i].missedIngredients.length; j++) {
 				x[j] = recipes[i].missedIngredients[j].name;
-				ingredientsMissing[i].append(x[j]);
+				ingredientsMissing.append(x[j]);
 				if (j !== recipes[i].missedIngredients.length - 1) {
-					ingredientsMissing[i].append(", ");
+					ingredientsMissing.append(", ");
 				}
 			}
-		}
+		};
 
 		//Create divs to contain number of likes
-		likes[i] = document.createElement("div");
-		likes[i].setAttribute("class", "likes");
-		likes[i].innerHTML = "<b>Likes</b> " + recipes[i].likes;
+		likes = $("<div/>").addClass("likes");
+		likes.html("<b>Likes</b> " + recipes[i].likes);
 
 		//Create anchor tags to make the recipe blocks clickable
-		clickPart[i] = document.createElement("a");
-		clickPart[i].setAttribute("class", "clickPart");
+		clickPart = $("<a/>").addClass("clickPart");
 		var url = "recipePage.html?id=" + recipes[i].id;
-		clickPart[i].setAttribute("href", url);
-
+		clickPart.attr("href", url);
 
 		//Append all parts of recipe blocks to recipe blocks
-		recipeDiv[i].appendChild(clickPart[i]);
-		recipeDiv[i].appendChild(name[i]);
-		recipeDiv[i].appendChild(img[i]);
-		recipeDiv[i].appendChild(likes[i]);
-		recipeDiv[i].appendChild(ingredientsMissing[i]);
+		recipeDiv.append(clickPart)
+			.append(name)
+			.append(img)
+			.append(likes)
+			.append(ingredientsMissing);
 
 		//Append recipe blocks to container
-		recipeContainer.appendChild(recipeDiv[i]);
+		$(recipeContainer).append(recipeDiv);
 	}
 
 	
 	//Append recipe container to recipe wrapper and that to DOM (now recipes are visible)
-	recipeWrapper.appendChild(recipeContainer);
-	document.body.appendChild(recipeWrapper);
-
+	recipeWrapper.append(recipeContainer);
+	$('body').append(recipeWrapper);
+	
 	//Isotope initiation (grid format)
-	// $('.recipeWrapper').imagesLoaded(function() {
+	$('.recipeWrapper').imagesLoaded(function() {
+	    
 	    $('.recipeWrapper').isotope({
 		  	itemSelector: 'div.recipeBlock',
-		  	columnWidth: 'div.recipeBlock',
-		  	//Sorting not workin yet
-		  	getSortData: {
-		  		number: function() {
-		  			var number = $('.ingredientsMissing').text().split(" ")[0];
-		  			return number;
-		  		},
-		  	sortBy: 'number'
-		  	}
+		  	columnWidth: 'div.recipeBlock'
 		});
 
 	    //Scroll down on when recipes ready
 		$('html,body').animate({
        		scrollTop: $(".recipeContainer").offset().top
     	},'slow');
-	// });
+	});
 
 	$('.recipeBlock').on('click', function() {
 		var idOfClicked = $(this).attr('id');
