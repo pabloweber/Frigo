@@ -3,7 +3,7 @@ $(document).ready(function() {
 	var url = window.location.href;
 	
 	//Get the id of the clicked recipe
-	var id = url.split('?')[1].split('=')[1].split("&")[0];
+	var id = url.split('?')[1].split('=')[1];
 
 
 	//API Request

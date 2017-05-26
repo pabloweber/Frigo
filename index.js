@@ -33,6 +33,7 @@ function main(){
 
 	recipeWrapper = document.createElement("div");
 	recipeWrapper.setAttribute("class", "recipeWrapper");
+	recipeWrapper.setAttribute("id", "recipeWrapper");
 
 	recipeContainer = document.createElement("div");
 	recipeContainer.setAttribute("class", "recipeContainer");
@@ -108,7 +109,7 @@ function main(){
 	$('body').append(recipeWrapper);
 	
 	//Isotope initiation (grid format)
-	$('.recipeWrapper').imagesLoaded(function() {
+	// $('.recipeWrapper').imagesLoaded(function() {
 	    
 	    $('.recipeWrapper').isotope({
 		  	itemSelector: 'div.recipeBlock',
@@ -119,7 +120,7 @@ function main(){
 		$('html,body').animate({
        		scrollTop: $(".recipeContainer").offset().top
     	},'slow');
-	});
+	// });
 
 	$('.recipeBlock').on('click', function() {
 		var idOfClicked = $(this).attr('id');

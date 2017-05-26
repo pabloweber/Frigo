@@ -5,7 +5,7 @@ body{
 	padding: 0;
 }
 
-#nav{
+nav{
 	width: 100%;
 	height: 121px;
 	border-bottom-style: solid;
@@ -110,21 +110,22 @@ input::-webkit-input-placeholder {
 .recipeWrapper{
 	top: calc(100vh - 121px);
 	margin: 0 auto;
-	max-width: 1360px;
+	max-width: 80%;
 	z-index: 0;
 	position: absolute;
 }
 
 .recipeContainer{
-	height: inherit;
 	padding-top: 20px;
+	overflow: auto;
 }
 
 .recipeBlock{
 	margin: 15px;
 	border-color: : #0099FF;
 	border-width: 5px;
-	width: 300px;
+	box-sizing: border-box;
+	width: 20%;
 	border-radius: 5px;
 	color: #0099FF;
 	border-style: solid;
@@ -137,7 +138,7 @@ input::-webkit-input-placeholder {
 
 .img{
 	max-height: 420px;
-	width: inherit;
+	width: 100%;
 }
 
 .name{
@@ -168,34 +169,8 @@ input::-webkit-input-placeholder {
 	width: 100%;
 }
 
-@media only screen and (max-width: 800px) {
-    #formContainer {
-        width: 100%;
-        background-color: pink;
-        padding: 0;
-    }
-
-    #ingredientsInput{
-    	width: 96%;
-		height: 70px;
-		margin-left: 2%;
-		margin-left: 2%;
-		left: 5;
-		right: 5;
-    	box-sizing: border-box;
-    }
-
-    .recipeWrapper{
-    	width: 100%;
-    }
-
-    .recipeBlock{
-    	box-sizing: border-box;
-    	width: 46%;
-    	/*margin: 1%;*/
-    }
-
-    .img{
-    	width: 100%;
-    }
-}
+/*@media only screen and (max-width: 1700px) {
+	#recipeWrapper{
+		max-width: 1500px;
+	}
+}*/
