@@ -15,27 +15,27 @@
 
 	<body>
 		
-		<nav>
+		<section class="top">
 
-			<div id="navContainer">
-				
-				<a href="index.html" id="logo">FRIGO</a>
-				<img id="logoImg" src="logo.png">
+			<nav>
+				<div id="navContainer">
+					<a href="index.html" id="logo">FRIGO</a>
+					<img id="logoImg" src="logo.png">
+				</div>
+			</nav>
 
+			<div id="formContainer">
+				<p id="inputFields" class="shake-trigger">
+					<span id='formTitle' class="shake-constant">Hungry?</span>
+					<br>
+					<br>
+					<input id="ingredientsInput" class="input" value="cheese" placeholder="What's in your fridge?"></input>
+					<br>
+					<button type="submit" id="search" onclick="main()">Search</button>
+				</p>
 			</div>
 
-		</nav>
-
-		<div id="formContainer">
-			<p id="inputFields" class="shake-trigger">
-				<span id='formTitle' class="shake-constant">Hungry?</span>
-				<br>
-				<br>
-				<input id="ingredientsInput" class="input" value="cheese" placeholder="What's in your fridge?"></input>
-				<br>
-				<button type="submit" id="search" onclick="main()">Search</button>
-			</p>
-		</div>
+		</section>
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<script src="https://unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
