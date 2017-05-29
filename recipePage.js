@@ -44,9 +44,10 @@ $(document).ready(function() {
 	summaryDiv.html("<span id='title'><b>" + title + "</b></span>" + summary);
 	main.append(summaryDiv);
 
-	//Add ingredients to DOM
-	// var ingredients = document.createElement('div');
-	// ingredients.setAttribute('id', 'ingredients');
+	// Add ingredients to DOM
+	// var ingredients = $('<div/>')
+	// 	.attr('id', 'ingredients')
+
 
 	var clear = $('<br/>')
 		.addClass('clear');
@@ -56,47 +57,79 @@ $(document).ready(function() {
 		.addClass('description');
 	container.append(description)
 
-	var instructions = $('<div/>');
-	var instructionsTitle = $('<span/>');
-	instructionsTitle
+
+	// CREATE INSTRUCTIONS SECTION
+	var instructionsTitle = $('<span/>')
 		.attr('id', 'instructionsTitle')
 		.html("Instructions");
-	instructions
+
+	var instructions = $('<div/>')
 		.append(instructionsTitle)
 		.addClass('instructions');
-	container.append(instructions);
 
 	var instructionUl = $('<ol/>');
 	instructions.append(instructionUl);
 	var j = 1;
-	var instructionLi = [];
-
-	for (var k = 0; k < stepsParsed[0].steps.length; k++) {
-
-		for (var a = 0; a < stepsParsed[0].steps[k].ingredients.length; a++) {
-			console.log(stepsParsed[0].steps[k].ingredients[a])
-		}
-
-	}
+	var instructionLi;
 
 	for (var i = 0; i < stepsParsed[0].steps.length; i++) {
-
 		var isNumber =  /^\d+$/.test(stepsParsed[0].steps[i].step);
-
 		if (isNumber) {
 			continue;
 		}
 
-		instructionLi[i] = $('<li/>')
+		instructionLi = $('<li/>')
 			.addClass('instructionLi')
 			.html(stepsParsed[0].steps[i].step);
-
-		instructionUl.append(instructionLi[i]);
+		instructionUl.append(instructionLi);
 
 		j += 1
 	}
 
-	instructions.append(instructionUl)
+
+	// CREATE INGREDIENTS SECTION
+	var ingredientsTitle = $('<span/>')
+		.attr('id', 'ingredientsTitle')
+		.html("Ingredients");
+
+	var ingredients = $('<div/>')
+		.append(ingredientsTitle)
+		.addClass('ingredients');
+
+	var ingredientsUl = $('<ol/>');
+	instructions.append(ingredientsUl);
+	var j = 1;
+	var ingredientLi;
+	var ingArray = [];
+
+	// Create array containing recipes (remove all duplicates)
+	for (var k = 0; k < stepsParsed[0].steps.length; k++) {
+		for (var a = 0; a < stepsParsed[0].steps[k].ingredients.length; a++) {		
+			if (k == 0 && a == 0){
+				ingArray.push(stepsParsed[0].steps[k].ingredients[a].name);
+			} else {
+				if ($.inArray(stepsParsed[0].steps[k].ingredients[a].name, ingArray) == -1){
+					ingArray.push(stepsParsed[0].steps[k].ingredients[a].name);
+				}
+			}
+		}
+	};
+
+	// Append all ingredients from array created above to ingredientsUl
+	for (var i = 0; i < ingArray.length; i++){
+		ingredientLi = $('<li/>')
+			.addClass('ingredientLi')
+			.html(ingArray[i]);
+		ingredientsUl.append(ingredientLi);
+	};
+
+	// Append all sections to DOM
+	instructions.append(instructionUl);
+	ingredients.append(ingredientsUl);
+	description.append(ingredients);
 	description.append(instructions);
+
+
+
 
 })

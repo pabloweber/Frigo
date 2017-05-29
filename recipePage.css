@@ -78,12 +78,25 @@ nav{
 
 .description{
 	padding-top: 40px;
-	width: 50%;
 }
 
-#instructionsTitle{
+.instructions, .ingredients{
+	box-sizing: border-box;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.instructions{
+	width: 60%;
+}
+
+.ingredients{
+	width: 40%;
+}
+
+#instructionsTitle, #ingredientsTitle{
 	font-size: 40px;
-	font-weight: 700;
+	font-weight: 400;
 	display: block;
 }
 
@@ -112,6 +125,7 @@ ol > li {
   text-indent: -2em;
   list-style-type: none;
   counter-increment: item;
+  text-transform: capitalize;
 }
 
 ol > li:before {
