@@ -1,5 +1,5 @@
 body{
-	background-color: #ededea;
+	background-color: #f4f4f4;
 	font-family: "Avenir Next";
 	margin: 0;
 	padding: 0;
@@ -25,21 +25,12 @@ nav{
 }
 
 #logo{
-	font-size: 50px;
+	font-size: 60px;
 	font-weight: 700;
 	color: #292f33;
 	margin: 0;
-	display: block;
 	text-decoration: none;
 	font-family: Pacifico;
-}
-
-#logoImg{
-	height: 50px;
-	position: absolute;
-	top: 33px;
-	margin-left: 170px;
-	cursor: pointer;
 }
 
 #formContainer{
@@ -50,13 +41,13 @@ nav{
   	top: 0; left: 0; bottom: 0; right: 0;
   	padding: 0 30px;
   	z-index: 1;
-  	cursor: pointer;
 }
 
 #formTitle{
 	font-weight: 700;
 	font-size: 60px;
-	color: #c1b17d;
+	color: #292f33;
+	cursor: default;
 }
 
 #inputFields{
@@ -70,7 +61,7 @@ nav{
 	padding: 9px 17px;
 	font-size: 24px;
 	font-weight: 600;
-	color: #303030;
+	color: #292f33;
 	letter-spacing: 1.3px;
 	background: transparent;
 	border: 0;
@@ -78,14 +69,15 @@ nav{
 	border-bottom-width: 2px;
 	border-bottom-color: #303030;
   	outline: 0;
+  	transition: border-color 0.3s ease;
 }
 
-input:focus{
+.input:focus{
 	border-color: #c1b17d;
 	outline: 0;
 }
 
-input::-webkit-input-placeholder {
+.input::-webkit-input-placeholder {
 	font-family: "Avenir Next";
 	font-size: 22px;
 	font-weight: 500;
@@ -99,17 +91,22 @@ input::-webkit-input-placeholder {
 	height: 60px;
 	margin-top: 30px;
 	border-radius: 30px;
-	background-color: #292f33;
+	background-color: #c1b17d;
+	border-style: none;
+	color: white;
 	font-weight: 700;
 	font-size: 25px;
-	color: white;
-	border-style: none;
 	letter-spacing: 1.8px;
 	outline: 0;
+	transition: background 0.5s ease;
+}
+
+#search:hover{
+	background-color: rgba(41, 47, 51, 0.7);
 }
 
 #search:active{
-	background-color: rgba(41, 47, 51, 0.6);
+	background-color: rgba(41, 47, 51, 0);
 }
 
 .recipeWrapper{
@@ -149,10 +146,15 @@ input::-webkit-input-placeholder {
 	font-weight: bold;
 	font-size: 20px;
 	padding: 10px;
+	transition: background-color 0.2s ease;
 }
 
-.changeColor{
-	background-color: red;
+.recipeBlock:hover{
+	border-color: #c1b17d;
+}
+
+.recipeBlock:hover > .name{
+	background-color: #c1b17d;
 }
 
 .ingredientsMissing{

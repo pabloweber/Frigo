@@ -29,7 +29,6 @@ function main(){
 	var descriptionText;
 	var clickPart;
 	var likes;
-	var search;
 
 	recipeWrapper = document.createElement("div");
 	recipeWrapper.setAttribute("class", "recipeWrapper");
@@ -119,8 +118,16 @@ function main(){
 	    //Scroll down on when recipes ready
 		$('html,body').animate({
        		scrollTop: $(".recipeContainer").offset().top
-    	},'slow');
+    	}, 1500);
 	// });
+
+	let win = $(window);
+	let search = $("#search");
+
+	win.on("scroll", function(){
+		let top = win.scrollTop()/3;
+		search.css("transform", "rotate(" + top + "deg)");
+	});
 
 	$('.recipeBlock').on('click', function() {
 		var idOfClicked = $(this).attr('id');

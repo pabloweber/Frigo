@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+	var titleId = 'title' + sessionStorage.getItem('idOfClicked');
+	var title = sessionStorage.getItem(titleId);
+
+	$('title').html(title);
+
 	var url = window.location.href;
 	
 	//Get the id of the clicked recipe
@@ -39,8 +44,6 @@ $(document).ready(function() {
 	//Add title + summary to DOM
 	var summaryDiv = $('<div/>')
 		.attr('id', 'summary');
-	var titleId = 'title' + sessionStorage.getItem('idOfClicked');
-	var title = sessionStorage.getItem(titleId);
 	summaryDiv.html("<span id='title'><b>" + title + "</b></span>" + summary);
 	main.append(summaryDiv);
 
