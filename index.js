@@ -3,7 +3,7 @@ $(document).ready(function(){
 	setTimeout(function(){
 		$('#formTitle').removeClass('shake-rotate')
 	}, 800)
-})
+});
 
 function main(){
 
@@ -125,13 +125,8 @@ function main(){
 	let search = $("#search");
 
 	win.on("scroll", function(){
-		let top = win.scrollTop()/3;
+		let top = win.scrollTop() / 2;
 		search.css("transform", "rotate(" + top + "deg)");
 	});
 
-	$('.recipeBlock').on('click', function() {
-		var idOfClicked = $(this).attr('id');
-		sessionStorage.setItem('idOfClicked', idOfClicked);
-	})
-
-}
+};
